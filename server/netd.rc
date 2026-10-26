@@ -8,9 +8,11 @@ service netd1shot /system/bin/netd oneshot
     group root net_admin
     rlimit memlock 1073741824 1073741824
     updatable
+    # p11 d2 diag: capture netd1shot output in kmsg, do not reboot the device
+    stdio_to_kmsg
     # these two only apply to 'netd1shot'
     oneshot
-    reboot_on_failure reboot,netd1shot-fail
+    # p11 d2 diag: reboot_on_failure disabled (K1 baseline, same as known-good S0)
 
 # Keep in sync with 'netd1shot' above.
 service netd /system/bin/netd
